@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.2.2'
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testImplementation group: 'org.testng', name: 'testng', version: '7.6.0'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha7'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
+    testImplementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '2.0.0-alpha7', ext: 'pom'
+    // https://mvnrepository.com/artifact/junit/junit
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359'
+
+
+}
+
+test {
+    useTestNG()
+}
+
+task createZip(type: Zip) {
+    from projectDir
+    include 'src/**/*'
+    include 'gradle/**/*'
+    include '*.gradle'
+    include 'gradle.properties'
+    include 'gradlew'
+    include 'gradlew.bat'
+    doLast {
+        println "Path to zip: $archivePath.path"
+    }
+}
+
+tasks.register('hello') {
+    doLast {
+        println "Hello!"
+    }
+}
+
+tasks.register('intro') {
+    dependsOn tasks.hello
+    doLast {
+        println "I'm Gradle."
+    }
+}

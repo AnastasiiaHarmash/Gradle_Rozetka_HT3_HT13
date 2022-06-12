@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<company>
+    <name>Rozetka</name>
+			<filterRozetkas>
+			    <filterRozetka product="ноутбук" brand="HP" sum="50000"/>
+				<filterRozetka product="телефон" brand="samsung" sum="41000"/>
+				<filterRozetka product="навушники" brand="razer" sum="9500"/>
+				<filterRozetka product="перфоратор" brand="bosch" sum="28000"/>
+				<filterRozetka product="пилосос" brand="Philips" sum="26300"/>
+			</filterRozetkas>
+</company>
