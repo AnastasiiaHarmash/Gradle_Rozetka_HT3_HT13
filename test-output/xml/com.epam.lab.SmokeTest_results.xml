@@ -4,14 +4,14 @@
            failures="0"
            errors="0"
            skipped="0"
-           time="22.701">
+           time="21.523">
     <properties></properties>
 
 
 
             <testcase
                 name="smokeTest"
-                time="22.701"
+                time="21.523"
                 classname="com.epam.lab.SmokeTest">
             </testcase>
 </testsuite>

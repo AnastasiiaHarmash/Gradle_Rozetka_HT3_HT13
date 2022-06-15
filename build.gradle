@@ -7,6 +7,7 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -23,8 +24,9 @@ dependencies {
 }
 
 test {
-    systemProperties(System.getProperties())
-    useTestNG() {
+    //systemProperties(System.getProperties())
+   /* useTestNG() {
+        suites 'src/test/resources/testng.xml'
         options {
             listeners << 'org.uncommons.reportng.HTMLReporter'
             listeners << 'org.uncommons.reportng.JUnitXMLReporter'
@@ -33,6 +35,14 @@ test {
         testLogging {
             events = ['PASSED', 'FAILED', 'SKIPPED']
         }
+    } */
+
+    useTestNG() {
+        //set TestNG output dir
+        outputDirectory = file("$project.buildDir//testngOutput")
+        //required to turn on TestNG reports
+        useDefaultListeners = true
+        suites 'src/test/resources/testng.xml'
     }
 }
 
