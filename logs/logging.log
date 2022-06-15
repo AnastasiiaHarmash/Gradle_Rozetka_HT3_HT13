@@ -1,0 +1,27 @@
+2022-06-15 23:37:54 INFO  TestListener:39 - I am in onStart method Smoke Test Rozetka on Wed Jun 15 23:37:54 EEST 2022
+2022-06-15 23:37:54 INFO  SmokeTest:38 - BeforeTest in progress.
+2022-06-15 23:37:54 INFO  SmokeTest:65 - Running dataProvider testData
+2022-06-15 23:37:54 INFO  SmokeTest:45 - BeforeMethod in progress.
+2022-06-15 23:38:04 INFO  TestListener:19 - I am in com.epam.lab.SmokeTest method smokeTest start
+2022-06-15 23:38:04 INFO  SmokeTest:71 - smokeTest is running
+2022-06-15 23:38:04 INFO  SmokeTest:74 - Enter text to text field
+2022-06-15 23:38:11 INFO  SmokeTest:81 - Enter brand to search field
+2022-06-15 23:38:15 INFO  SmokeTest:88 - Click check box
+2022-06-15 23:38:19 INFO  SmokeTest:91 - Click filter dropdown
+2022-06-15 23:38:25 INFO  SmokeTest:97 - Click add to cart
+2022-06-15 23:38:26 INFO  SmokeTest:101 - Click on cart button
+2022-06-15 23:38:26 INFO  TestListener:23 - I am in com.epam.lab.SmokeTest method smokeTest succeed
+2022-06-15 23:38:26 INFO  SmokeTest:54 - AfterMethod, driver close.
+2022-06-15 23:38:27 INFO  TestListener:43 - I am in onFinish method Smoke Test Rozetka on Wed Jun 15 23:38:27 EEST 2022
+2022-06-15 23:38:27 INFO  TestListener:44 - ------------------------------------------------------------------------------------------
+2022-06-15 23:40:03 INFO  SmokeTest:38 - BeforeTest in progress.
+2022-06-15 23:40:03 INFO  SmokeTest:65 - Running dataProvider testData
+2022-06-15 23:40:03 INFO  SmokeTest:45 - BeforeMethod in progress.
+2022-06-15 23:40:13 INFO  SmokeTest:71 - smokeTest is running
+2022-06-15 23:40:13 INFO  SmokeTest:74 - Enter text to text field
+2022-06-15 23:40:21 INFO  SmokeTest:81 - Enter brand to search field
+2022-06-15 23:40:25 INFO  SmokeTest:88 - Click check box
+2022-06-15 23:40:29 INFO  SmokeTest:91 - Click filter dropdown
+2022-06-15 23:40:34 INFO  SmokeTest:97 - Click add to cart
+2022-06-15 23:40:35 INFO  SmokeTest:101 - Click on cart button
+2022-06-15 23:40:36 INFO  SmokeTest:54 - AfterMethod, driver close.

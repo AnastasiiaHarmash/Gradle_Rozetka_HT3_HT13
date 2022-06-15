@@ -10,24 +10,30 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.2.2'
-    // https://mvnrepository.com/artifact/org.testng/testng
-    testImplementation group: 'org.testng', name: 'testng', version: '7.6.0'
-    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha7'
-    // https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
-    testImplementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '2.0.0-alpha7', ext: 'pom'
-    // https://mvnrepository.com/artifact/junit/junit
-    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
-    // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
-    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359'
 
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.2.2'
+    testImplementation group: 'org.testng', name: 'testng', version: '7.6.0'
+    //implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha7'
+    testImplementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '2.0.0-alpha7', ext: 'pom'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359'
+    implementation group: 'org.testng', name: 'reportng', version: '1.2.2'
+    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
 
 }
 
 test {
-    useTestNG()
+    systemProperties(System.getProperties())
+    useTestNG() {
+        options {
+            listeners << 'org.uncommons.reportng.HTMLReporter'
+            listeners << 'org.uncommons.reportng.JUnitXMLReporter'
+        }
+        useDefaultListeners = false
+        testLogging {
+            events = ['PASSED', 'FAILED', 'SKIPPED']
+        }
+    }
 }
 
 task createZip(type: Zip) {
