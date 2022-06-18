@@ -7,12 +7,10 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-
-
-
 public class TestListener implements ITestListener {
 
     private static final Logger logger = LogManager.getLogger(TestListener.class);
+
     public TestListener() {
         BasicConfigurator.configure();
     }
@@ -23,7 +21,7 @@ public class TestListener implements ITestListener {
 
     public void onTestSuccess(ITestResult iTestResult) {
         logger.info(String.format("I am in %s method %s succeed", getTestClassName(iTestResult), getTestMethodName(iTestResult)));
-    }
+       }
 
     public void onTestFailure(ITestResult iTestResult) {
         logger.info(String.format("I am in %s method %s failed", getTestClassName(iTestResult), getTestMethodName(iTestResult)));

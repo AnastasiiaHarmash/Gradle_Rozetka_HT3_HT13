@@ -8,6 +8,8 @@ import com.epam.lab.util.XMLToObject;
 import io.qameta.allure.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -19,13 +21,12 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 
-
 @Listeners({TestListener.class})
 @Epic("Regression Tests")
 @Feature("Add to cart test")
 public class SmokeTest {
 
-    private WebDriver driver;
+    protected static WebDriver driver;
     private static final Logger logger = LogManager.getLogger(SmokeTest.class);
     private static final long DEFAULT_TIMEOUT = 60;
     private static XMLToObject xmlToObject;
@@ -54,7 +55,7 @@ public class SmokeTest {
         driver.get(propertiesReader.getUrl());
     }
 
-   @AfterMethod
+    @AfterMethod
     public void tearDown() {
         logger.info("AfterMethod, driver close.");
         driver.close();
@@ -69,6 +70,14 @@ public class SmokeTest {
     public Object [][] testData() {
         logger.info("Running dataProvider testData");
         return xmlToObject.testDataMassive();
+    }
+
+    public static void saveScreenshotPNG () {
+        Allure.getLifecycle().addAttachment(
+                "screenshot", "image/png", "png",
+                ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)
+        );
+        logger.info("Take screenshot in the end of the test.");
     }
 
     @Test(dataProvider = "testData", description = "Adding an item to the cart and checking the price of the item")
@@ -112,5 +121,6 @@ public class SmokeTest {
         searchResultsPage.waitVisibilityOfElement(DEFAULT_TIMEOUT, searchResultsPage.getPrice());
         Assert.assertTrue(searchResultsPage.isPriceVisible());
         Assert.assertTrue(Integer.parseInt(sum) < searchResultsPage.getTextFromPrice());
+        saveScreenshotPNG();
     }
 }
