@@ -1,5 +1,23 @@
+
+/*buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "io.qameta.allure.gradle.report:allure-report-plugin:2.10.0"
+    }
+}*/
+
 plugins {
     id 'java'
+    id 'io.qameta.allure' version "2.10.0"
+}
+apply plugin: 'io.qameta.allure'
+
+allure {
+    version = '2.10.0'
 }
 
 group 'org.example'
@@ -7,7 +25,6 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    mavenLocal()
 }
 
 dependencies {
@@ -21,16 +38,33 @@ dependencies {
     implementation group: 'org.testng', name: 'reportng', version: '1.2.2'
     implementation group: 'log4j', name: 'log4j', version: '1.2.17'
 
+    implementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.18.1'
+    implementation group: 'io.qameta.allure', name: 'allure-maven', version: '2.11.2'
+    implementation group: 'com.github.automatedowl', name: 'allure-environment-writer', version: '1.0.0'
+    implementation group: 'io.qameta.allure', name: 'allure-java-commons', version: '2.18.1'
+    implementation group: 'io.qameta.allure', name: 'allure-commandline', version: '2.18.1', ext: 'pom'
+    implementation group: 'org.apache.commons', name: 'commons-configuration2', version: '2.7'
+
+
+    implementation group: 'aspectj', name: 'aspectjrt', version: '1.5.4'
+    runtimeOnly group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.9.1'
+    implementation group: 'org.aspectj', name: 'aspectjtools', version: '1.9.9.1'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.23.1'
+
 }
 
 test {
-
+    //systemProperties(System.getProperties())
     useTestNG() {
         //set TestNG output dir
-        outputDirectory = file("$project.buildDir//testngOutput")
+        // outputDirectory = file("$project.buildDir//testngOutput")
         //required to turn on TestNG reports
-        useDefaultListeners = true
+
         suites 'src/test/resources/testng.xml'
+        options.useDefaultListeners = true
+        testLogging {
+            events = ['PASSED', 'FAILED', 'SKIPPED']
+        }
     }
 }
 
