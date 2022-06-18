@@ -3,7 +3,9 @@ package com.epam.lab;
 import com.epam.lab.page.HomePageRozetka;
 import com.epam.lab.page.SearchResultsPage;
 import com.epam.lab.util.PropertiesReader;
+import com.epam.lab.util.TestListener;
 import com.epam.lab.util.XMLToObject;
+import io.qameta.allure.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +20,9 @@ import java.io.IOException;
 
 
 
+@Listeners({TestListener.class})
+@Epic("Regression Tests")
+@Feature("Add to cart test")
 public class SmokeTest {
 
     private WebDriver driver;
@@ -66,7 +71,11 @@ public class SmokeTest {
         return xmlToObject.testDataMassive();
     }
 
-    @Test(dataProvider = "testData")
+    @Test(dataProvider = "testData", description = "Adding an item to the cart and checking the price of the item")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Test Description: Adding an item to the cart and checking that the price of the item is less than the control value")
+    @Story("Adding an item to the cart")
+    @Step("Smoke Test add to cart")
     public void smokeTest(String product, String brand, String sum) throws InterruptedException {
         logger.info("smokeTest is running");
         HomePageRozetka homePageRozetka = new HomePageRozetka(driver);

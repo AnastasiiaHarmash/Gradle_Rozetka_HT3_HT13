@@ -1,7 +1,5 @@
 package com.epam.lab.util;
 
-
-import com.google.common.collect.ImmutableMap;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -9,7 +7,6 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
 
 
 
@@ -22,11 +19,6 @@ public class TestListener implements ITestListener {
 
     public void onTestStart(ITestResult iTestResult) {
         logger.info(String.format("I am in %s method %s start", getTestClassName(iTestResult), getTestMethodName(iTestResult)));
-        allureEnvironmentWriter(
-                ImmutableMap.<String, String>builder()
-                .put("Gradle Rozetka", "TEST")
-                .build(), System.getProperty("user.dir")
-                + "/build/allure-results");
     }
 
     public void onTestSuccess(ITestResult iTestResult) {
